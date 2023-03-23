@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './chat.css';
 
 interface mProps {
@@ -9,15 +9,20 @@ interface Props {
     messages: string[][],
     id: string,
     handleSetMessages: (id: string, chat: string) => void;
+    loadOldMessages: () => void;
 }
 
-function Chat({ messages, id, handleSetMessages }: Props) {
-    
+interface oldProps {
+    loadOldMessages: () => void;
+}
+
+function Chat({ messages, id, handleSetMessages, loadOldMessages }: Props) {
+    const [chat, setChat] = useState('');
+    // const messageRef = useRef(null);
+
     let messageList = messages.map((msg, index)=>{
-        return <ChatMessage message={ msg } id={ id }/>
+        return msg.length < 2 ? null : <ChatMessage message={ msg } id={ id }/>
     })
-    
-    const [chat, setChat] = useState('')
     const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
         e.preventDefault();
         setChat(e.currentTarget.value)
@@ -31,19 +36,41 @@ function Chat({ messages, id, handleSetMessages }: Props) {
         setChat("")
     }
 
+    const handleScroll = () => {
+        const element = document.getElementById('base');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    useEffect(() => {
+        handleScroll()
+    }, [])
+
     return (
         <div className='chat'>
             <div className='header'>
-
+                <LoadOld loadOldMessages={loadOldMessages} />
             </div>
             <div className="main">
                 { messageList }
+                <div id='base' />
             </div>
             <form>
                 <input type="text" placeholder="..." value={chat} onChange={ handleChange }/>
                 <button type="submit" className='button' onClick={ handleSubmit }>🚀</button>
             </form>
         </div>
+    )
+}
+
+function LoadOld( {loadOldMessages}: oldProps ) {
+    const handleLoadOld = (e: React.SyntheticEvent) => {
+        e.preventDefault()
+        loadOldMessages()
+    }
+    return (
+        <button className="load-old" onClick={handleLoadOld}>Load Old</button>
     )
 }
 

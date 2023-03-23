@@ -18,7 +18,7 @@ function Login( { handleSetId}: Props ) {
     if (!name) {
       return alert("Name can't be empty");
     }
-    handleSetId(name)
+    handleSetId(name.toLowerCase())
   }
 
   return (

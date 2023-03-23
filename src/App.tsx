@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Login, Chat } from './components';
-import { useImmer } from 'use-immer';
 
 
 function App() {
@@ -21,6 +20,18 @@ function App() {
     }
   }, [])
 
+  const loadOldMessages = () => {
+    const msg: any = window.localStorage.getItem('messages')
+    const msgs = JSON.parse(msg)
+    if (msgs) {
+      if (msgs.length > 25) {
+        setMessages(msgs)
+      } else {
+        alert('There are no old messages')
+      }
+    }
+  }
+
   const handleSetId = (id: string) => {
     setId(id)
   }
@@ -30,7 +41,6 @@ function App() {
     let m = [...messages]
     m.push(t)
     setMessages(m)
-    // setMessages(draft => {draft.push([id, chat])})
     window.localStorage.setItem('messages', JSON.stringify(m))
   }
 
@@ -40,7 +50,7 @@ function App() {
     </div>
   ) : (
     <div className="App">
-      <Chat messages={messages} id={id} handleSetMessages={handleSetMessages} />
+      <Chat messages={messages} id={id} handleSetMessages={handleSetMessages} loadOldMessages={loadOldMessages} />
     </div>
   )
 }
