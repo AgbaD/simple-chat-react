@@ -1,0 +1,116 @@
+.chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: rgb(40, 37, 53);
+}
+
+.chat .main {
+    padding: 10px;
+    height: 80vh;
+    margin: 10vh 0 10vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+  
+.chat .main::-webkit-scrollbar {
+    width: 0.25rem;
+}
+  
+.chat .main::-webkit-scrollbar-track {
+    background: #1e1e24;
+}
+  
+.chat .main::-webkit-scrollbar-thumb {
+    background: #6649b8;
+}
+  
+.chat form {
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(24, 23, 23);
+    width: 100%;
+    /* max-width: 728px; */
+    display: flex;
+    font-size: 1.5rem;
+}
+  
+.chat form button {
+    width: 20%;
+    background-color: rgb(56, 56, 143);
+  }
+  
+  
+.chat form input {
+    line-height: 1.5;
+    width: 100%;
+    font-size: 1.5rem;
+    background: rgb(58, 58, 58);
+    color: white;
+    outline: none;
+    border: none;
+    padding: 0 10px;
+}
+
+.chat p {
+    max-width: 500px;
+    margin-bottom: 12px;
+    line-height: 24px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    position: relative;
+    color: white;
+    text-align: center;
+}
+
+.chat .main .message .name{
+    font-size: 50%;
+    padding: 1px 4px;
+}
+  
+.chat .message {
+    display: flex;
+    align-items: center;
+}
+
+
+.chat .sent {
+    flex-direction: row-reverse;
+}
+
+.chat .sent p {
+    color: white;
+    background: #0b93f6;
+    align-self: flex-end;
+}
+.chat .received p {
+    background: #e5e5ea;
+    color: black;
+    align-self: flex-end;
+}
+
+.chat button {
+    background-color: #282c34;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1.25rem;
+}
+  
+.chat button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.chat img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 2px 5px;
+}
