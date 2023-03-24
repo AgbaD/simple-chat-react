@@ -12,7 +12,7 @@ function App() {
     const msgs = JSON.parse(msg)
     if (msgs) {
       if (msgs.length > 25) {
-        const msgsPg = msgs.slice(0, 25)
+        const msgsPg = msgs.slice(-25)
         setMessages(msgsPg)
       } else {
         setMessages(msgs)
@@ -29,6 +29,8 @@ function App() {
       } else {
         alert('There are no old messages')
       }
+    } else {
+      alert('There are no messages')
     }
   }
 

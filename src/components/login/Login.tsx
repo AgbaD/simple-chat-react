@@ -1,11 +1,11 @@
 import React, { useState  } from "react";
 import './login.css';
 
-interface Props {
+export interface Props {
   handleSetId: (id: string) => void;
 }
 
-function Login( { handleSetId}: Props ) {
+function Login( { handleSetId }: Props ) {
   const [name, setName] = useState('');
 
 
@@ -22,10 +22,10 @@ function Login( { handleSetId}: Props ) {
   }
 
   return (
-    <div className='login'>
+    <div className='login' data-testid='login-form'>
         <h2>Get Started</h2>
-        <input type="text" placeholder='username' onChange={ handleChange } />
-        <button type='button' className='button' onClick={ handleSubmit }>
+        <input type="text" placeholder='username' data-testid='login-text' onChange={ handleChange } />
+        <button type='button' className='button' data-testid='login-button' onClick={ handleSubmit }>
         Login</button>
         <p className='text'>Thanks for having me! 😃</p>
     </div>
